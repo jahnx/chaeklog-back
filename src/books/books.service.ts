@@ -19,6 +19,19 @@ export class BooksService {
     private noteRepository: NoteRepository,
   ) {}
 
+  //카카오 책 검색 API
+  async getBookByKeyword(keyword: string): Promise<any> {
+    const params = {
+      query: keyword,
+      sort: 'accuracy',
+    };
+    const result = await KakaoAPI.get('/v3/search/book?target=title', {
+      params,
+    });
+
+    return result.data.documents;
+  }
+
   //모든 책 조회
   async getAllBooks(user: User): Promise<Book[]> {
     const query = this.bookRepository.createQueryBuilder('book');

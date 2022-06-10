@@ -6,7 +6,7 @@ const kakaoConfig = config.get('kakao');
 const KakaoAPI = axios.create({
   baseURL: 'https://dapi.kakao.com',
   headers: {
-    Authorization: `KakaoAK ${kakaoConfig.apikey}`,
+    Authorization: `KakaoAK ${kakaoConfig.apiKey}`,
   },
 });
 

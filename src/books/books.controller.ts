@@ -21,13 +21,18 @@ import { CreateBookDto } from './dto/create-book.dto';
 import { NoteDto } from './dto/note.dto';
 import { Note } from './entity/note.entity';
 import { UpdateBookDto } from './dto/update-book.dto';
-import { query } from 'express';
 
 @Controller('books')
 @UseGuards(AuthGuard('jwt'))
 export class BooksController {
   private logger = new Logger('BooksController');
   constructor(private bookService: BooksService) {}
+
+  //카카오 책 검색 API
+  @Get('search')
+  getBookByKeyword(@Query('keyword') keyword: string): Promise<any> {
+    return this.bookService.getBookByKeyword(keyword);
+  }
 
   //모든 책 조회
   @Get()
