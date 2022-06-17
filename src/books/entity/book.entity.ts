@@ -18,10 +18,10 @@ export class Book extends BaseEntity {
   title: string;
 
   @Column()
-  author: string;
+  authors: string;
 
   @Column()
-  imgURL: string;
+  thumbnail: string;
 
   @Column()
   startDate: string;

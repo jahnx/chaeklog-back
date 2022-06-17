@@ -5,10 +5,10 @@ export class CreateBookDto {
   title: string;
 
   @IsNotEmpty()
-  author: string;
+  authors: string;
 
   @IsNotEmpty()
-  imgURL: string;
+  thumbnail: string;
 
   @IsNotEmpty()
   startDate: string;

@@ -30,7 +30,11 @@ export class BooksController {
 
   //카카오 책 검색 API
   @Get('search')
-  getBookByKeyword(@Query('keyword') keyword: string): Promise<any> {
+  getBookByKeyword(
+    @Query('keyword') keyword: string,
+    @GetUser() user: User,
+  ): Promise<any> {
+    this.logger.verbose(`User ${user.email} trying to get all books`);
     return this.bookService.getBookByKeyword(keyword);
   }
 

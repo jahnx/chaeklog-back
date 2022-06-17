@@ -24,6 +24,7 @@ export class BooksService {
     const params = {
       query: keyword,
       sort: 'accuracy',
+      size: 30,
     };
     const result = await KakaoAPI.get('/v3/search/book?target=title', {
       params,

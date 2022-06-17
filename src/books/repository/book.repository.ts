@@ -6,11 +6,11 @@ import { User } from '../../auth/user.entity';
 @EntityRepository(Book)
 export class BookRepository extends Repository<Book> {
   async createBook(bookData: CreateBookDto, user: User): Promise<Book> {
-    const { title, author, imgURL, startDate, endDate } = bookData;
+    const { title, authors, thumbnail, startDate, endDate } = bookData;
     const book = this.create({
       title,
-      author,
-      imgURL,
+      authors,
+      thumbnail,
       startDate,
       endDate,
       user,
