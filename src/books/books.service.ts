@@ -52,6 +52,14 @@ export class BooksService {
     return book;
   }
 
+  //특정 책 필사 조회
+  async getNotesByBookId(id: number): Promise<Note[]> {
+    const query = this.noteRepository.createQueryBuilder('note');
+    query.where('note.bookId = :bookId', { bookId: id });
+    const notes = await query.getMany();
+    return notes;
+  }
+
   //책 기록
   async createBook(bookData: CreateBookDto, user: User): Promise<Book> {
     return this.bookRepository.createBook(bookData, user);

@@ -52,6 +52,13 @@ export class BooksController {
     return this.bookService.getBookById(id);
   }
 
+  //특정 책 필사 조회
+  @Get(':id/notes')
+  getNotesByBookId(@Param('id') id: number): Promise<Note[]> {
+    this.logger.verbose(`User trying to get notes with bookId ${id}`);
+    return this.bookService.getNotesByBookId(id);
+  }
+
   //책 기록 생성
   @Post()
   @UsePipes(ValidationPipe)
