@@ -4,7 +4,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  RelationId,
 } from 'typeorm';
 import { Book } from './book.entity';
 
@@ -13,11 +12,11 @@ export class Note extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Book, (book) => book.notes, { eager: false })
+  @ManyToOne(() => Book, (book) => book.notes, {
+    eager: false,
+    onDelete: 'CASCADE',
+  })
   book: Book;
-
-  // @RelationId((note: Note) => note.book)
-  // bookId: number;
 
   @Column()
   page: number;

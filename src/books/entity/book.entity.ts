@@ -32,6 +32,9 @@ export class Book extends BaseEntity {
   @OneToMany(() => Note, (note) => note.book, { eager: true })
   notes: Note[];
 
-  @ManyToOne(() => User, (user) => user.books, { eager: false })
+  @ManyToOne(() => User, (user) => user.books, {
+    eager: false,
+    onDelete: 'CASCADE',
+  })
   user: User;
 }
