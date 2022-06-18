@@ -38,7 +38,7 @@ export class BooksService {
     const query = this.bookRepository.createQueryBuilder('book');
     query.where('book.userId = :userId', { userId: user.id });
 
-    const books = await query.getMany();
+    const books = await query.orderBy('id', 'DESC').getMany();
     return books;
   }
 
