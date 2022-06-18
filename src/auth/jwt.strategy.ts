@@ -5,6 +5,8 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import * as config from 'config';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const jwtConfig = config.get('jwt');
 

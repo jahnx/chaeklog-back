@@ -8,6 +8,8 @@ import * as config from 'config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const jwtConfig = config.get('jwt');
 

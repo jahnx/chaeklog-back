@@ -34,7 +34,7 @@ export class BooksController {
     @Query('keyword') keyword: string,
     @GetUser() user: User,
   ): Promise<any> {
-    this.logger.verbose(`User ${user.email} trying to get all books`);
+    this.logger.verbose(`User ${user.email} trying to get search result`);
     return this.bookService.getBookByKeyword(keyword);
   }
 
@@ -66,6 +66,7 @@ export class BooksController {
     @Body() bookData: CreateBookDto,
     @GetUser() user: User,
   ): Promise<Book> {
+    this.logger.verbose(`User trying to create new book-log`);
     return this.bookService.createBook(bookData, user);
   }
 
@@ -75,6 +76,7 @@ export class BooksController {
     @Body() noteData: NoteDto,
     @Param('id') bookId: number,
   ): Promise<Note> {
+    this.logger.verbose(`User trying to create new note-sentence`);
     return this.bookService.createNote(noteData, bookId);
   }
 
@@ -84,6 +86,9 @@ export class BooksController {
     @Param('id') id: number,
     @Body() startEndDate: UpdateBookDto,
   ): Promise<Book> {
+    this.logger.verbose(
+      `User trying to update reading period with book id ${id}`,
+    );
     return this.bookService.updateReadingPeriod(id, startEndDate);
   }
 
@@ -93,18 +98,21 @@ export class BooksController {
     @Param('noteId') id: number,
     @Body() noteData: NoteDto,
   ): Promise<Note> {
+    this.logger.verbose(`User trying to update note with id ${id}`);
     return this.bookService.updateNote(id, noteData);
   }
 
   //책 기록 삭제
   @Delete(':id')
   deleteBook(@Param('id') id: number, @GetUser() user: User): Promise<void> {
+    this.logger.verbose(`User trying to delete book with id ${id}`);
     return this.bookService.deleteBook(id, user);
   }
 
   //필사 삭제
   @Delete(':id/notes/:noteId')
   deleteNote(@Param('noteId') id: number): Promise<void> {
+    this.logger.verbose(`User trying to delete note with id ${id}`);
     return this.bookService.deleteNote(id);
   }
 }

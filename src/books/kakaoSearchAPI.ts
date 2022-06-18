@@ -1,12 +1,13 @@
 import axios from 'axios';
-import * as config from 'config';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const kakaoConfig = config.get('kakao');
+const kakaoApiKey = process.env.KAKAO_API_KEY;
 
 const KakaoAPI = axios.create({
   baseURL: 'https://dapi.kakao.com',
   headers: {
-    Authorization: `KakaoAK ${kakaoConfig.apiKey}`,
+    Authorization: `KakaoAK ${kakaoApiKey}`,
   },
 });
 
